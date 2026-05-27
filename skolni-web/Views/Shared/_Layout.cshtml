@@ -14,7 +14,7 @@
     <div class="topbar">
         <div class="container">
             <span>Telefon: 499 599 300</span>
-            <span>sekretariat&#64;podvnodniskola.cz</span>
+            <span>sekretariat&#64;mojeskola.cz</span>
         </div>
     </div>
 
@@ -66,12 +66,25 @@
                     </ul>
                 </li>
                 <li class="nav-item">
-                    <a asp-controller="Home" asp-action="Aktuality">Aktuality</a>
-                </li>
-                <li class="nav-item">
                     <a asp-controller="Home" asp-action="Kontakt">Kontakt</a>
                 </li>
             </ul>
+
+            <!-- Přihlášení / odhlášení v navigaci -->
+            <div class="nav-auth">
+                @if (Context.Session.GetString("UserJmeno") != null)
+                {
+                    <a asp-controller="Home" asp-action="Dashboard">
+                        👤 @Context.Session.GetString("UserJmeno")
+                    </a>
+                    <a asp-controller="Account" asp-action="Logout">Odhlásit</a>
+                }
+                else
+                {
+                    <a asp-controller="Account" asp-action="Login">Přihlásit se</a>
+                    <a asp-controller="Account" asp-action="Register" class="btn-nav-register">Registrace</a>
+                }
+            </div>
         </div>
     </nav>
 

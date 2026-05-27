@@ -1,0 +1,64 @@
+﻿@model List<skolni_web.Models.Tahak>
+@{
+    ViewData["Title"] = "Nástěnka žáka";
+    var jmeno = Context.Session.GetString("UserJmeno");
+}
+
+<section class="dashboard-section">
+    <div class="container">
+        <div class="dashboard-header">
+            <div>
+                <h2>Vítej, @jmeno! 🎒</h2>
+                <p class="dashboard-sub">Toto je tvá žákovská nástěnka</p>
+            </div>
+            <a asp-controller="Account" asp-action="Logout" class="btn-logout">Odhlásit se</a>
+        </div>
+
+        <!-- TAHÁK OKNO -->
+        <div class="dashboard-card">
+            <div class="card-header">
+                <h3>📝 Sdílené taháky</h3>
+                <span class="card-badge">Vidí všichni žáci</span>
+            </div>
+
+            <!-- Přidat tahák -->
+            <form asp-controller="Home" asp-action="PridatTahak" method="post" class="add-form">
+                <div class="add-form-row">
+                    <input type="text" name="nazev" class="form-input" placeholder="Název taháku (např. Matematika - vzorce)" required />
+                </div>
+                <div class="add-form-row">
+                    <textarea name="obsah" class="form-input form-textarea" placeholder="Obsah taháku..." required></textarea>
+                </div>
+                <button type="submit" class="btn-add">+ Přidat tahák</button>
+            </form>
+
+            <!-- Seznam taháků -->
+            @if (!Model.Any())
+            {
+                <p class="empty-msg">Zatím žádné taháky. Přidej první!</p>
+            }
+            else
+            {
+                <div class="tahaky-list">
+                    @foreach (var tahak in Model)
+                    {
+                        <div class="tahak-item">
+                            <div class="tahak-header">
+                                <strong>@tahak.Nazev</strong>
+                                <span class="tahak-meta">@tahak.User?.Jmeno · @tahak.DatumPridani.ToString("d. M. yyyy")</span>
+                            </div>
+                            <p class="tahak-obsah">@tahak.Obsah</p>
+                            @if (tahak.UserId == Context.Session.GetInt32("UserId"))
+                            {
+                                <form asp-controller="Home" asp-action="SmazatTahak" method="post" style="display:inline">
+                                    <input type="hidden" name="id" value="@tahak.Id" />
+                                    <button type="submit" class="btn-delete">Smazat</button>
+                                </form>
+                            }
+                        </div>
+                    }
+                </div>
+            }
+        </div>
+    </div>
+</section>

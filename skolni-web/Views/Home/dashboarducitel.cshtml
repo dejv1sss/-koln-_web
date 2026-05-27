@@ -1,0 +1,89 @@
+﻿@model List<skolni_web.Models.OdpadnutaHodina>
+@{
+    ViewData["Title"] = "Nástěnka učitele";
+    var jmeno = Context.Session.GetString("UserJmeno");
+}
+
+<section class="dashboard-section">
+    <div class="container">
+        <div class="dashboard-header">
+            <div>
+                <h2>Vítej, @jmeno! 👨‍🏫</h2>
+                <p class="dashboard-sub">Toto je tvá učitelská nástěnka</p>
+            </div>
+            <a asp-controller="Account" asp-action="Logout" class="btn-logout">Odhlásit se</a>
+        </div>
+
+        <!-- ODPADNUTÉ HODINY -->
+        <div class="dashboard-card">
+            <div class="card-header">
+                <h3>📋 Odpadnuté hodiny</h3>
+                <span class="card-badge ucitel-badge">Vidí jen učitelé</span>
+            </div>
+
+            <!-- Přidat hodinu -->
+            <form asp-controller="Home" asp-action="PridatHodinu" method="post" class="add-form">
+                <div class="add-form-grid">
+                    <div>
+                        <label>Předmět</label>
+                        <input type="text" name="predmet" class="form-input" placeholder="např. Matematika" required />
+                    </div>
+                    <div>
+                        <label>Třída</label>
+                        <input type="text" name="trida" class="form-input" placeholder="např. 3.A" required />
+                    </div>
+                    <div>
+                        <label>Datum</label>
+                        <input type="date" name="datum" class="form-input" required />
+                    </div>
+                </div>
+                <div class="add-form-row" style="margin-top:12px">
+                    <input type="text" name="poznamka" class="form-input" placeholder="Poznámka (nepovinné)" />
+                </div>
+                <button type="submit" class="btn-add ucitel-btn">+ Přidat odpadnutou hodinu</button>
+            </form>
+
+            <!-- Seznam hodin -->
+            @if (!Model.Any())
+            {
+                <p class="empty-msg">Zatím žádné odpadnuté hodiny.</p>
+            }
+            else
+            {
+                <table class="hodiny-table">
+                    <thead>
+                        <tr>
+                            <th>Předmět</th>
+                            <th>Třída</th>
+                            <th>Datum</th>
+                            <th>Učitel</th>
+                            <th>Poznámka</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var h in Model)
+                        {
+                            <tr>
+                                <td><strong>@h.Predmet</strong></td>
+                                <td>@h.Trida</td>
+                                <td>@h.Datum.ToString("d. M. yyyy")</td>
+                                <td>@h.User?.Jmeno</td>
+                                <td>@h.Poznamka</td>
+                                <td>
+                                    @if (h.UserId == Context.Session.GetInt32("UserId"))
+                                    {
+                                        <form asp-controller="Home" asp-action="SmazatHodinu" method="post">
+                                            <input type="hidden" name="id" value="@h.Id" />
+                                            <button type="submit" class="btn-delete">Smazat</button>
+                                        </form>
+                                    }
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            }
+        </div>
+    </div>
+</section>

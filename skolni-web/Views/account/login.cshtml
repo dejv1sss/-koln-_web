@@ -1,0 +1,33 @@
+﻿@model skolni_web.Models.LoginViewModel
+@{
+    ViewData["Title"] = "Přihlášení";
+}
+
+<section class="auth-section">
+    <div class="auth-card">
+        <h2 class="auth-title">Přihlášení</h2>
+        <p class="auth-sub">Přihlás se do školního portálu</p>
+
+        <form asp-action="Login" method="post">
+            <div asp-validation-summary="All" class="alert-error"></div>
+
+            <div class="form-group">
+                <label asp-for="Email">Email</label>
+                <input asp-for="Email" class="form-input" placeholder="jan@skola.cz" />
+                <span asp-validation-for="Email" class="field-error"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Heslo">Heslo</label>
+                <input asp-for="Heslo" type="password" class="form-input" placeholder="Tvoje heslo" />
+                <span asp-validation-for="Heslo" class="field-error"></span>
+            </div>
+
+            <button type="submit" class="btn-auth">Přihlásit se</button>
+        </form>
+
+        <p class="auth-footer">
+            Nemáš účet? <a asp-controller="Account" asp-action="Register">Zaregistruj se</a>
+        </p>
+    </div>
+</section>

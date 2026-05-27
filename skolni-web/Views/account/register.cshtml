@@ -1,0 +1,66 @@
+﻿@model skolni_web.Models.RegisterViewModel
+@{
+    ViewData["Title"] = "Registrace";
+}
+
+<section class="auth-section">
+    <div class="auth-card">
+        <h2 class="auth-title">Registrace</h2>
+        <p class="auth-sub">Vytvoř si účet</p>
+
+        <form asp-action="Register" method="post">
+            <div asp-validation-summary="General" class="alert-error"></div>
+
+            <div class="form-group">
+                <label asp-for="Jmeno">Jméno a příjmení</label>
+                <input asp-for="Jmeno" class="form-input" placeholder="Jan Novák" />
+                <span asp-validation-for="Jmeno" class="field-error"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Email">Email</label>
+                <input asp-for="Email" class="form-input" placeholder="jan@skola.cz" />
+                <span asp-validation-for="Email" class="field-error"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Heslo">Heslo</label>
+                <input asp-for="Heslo" type="password" class="form-input" placeholder="Minimálně 6 znaků" />
+                <span asp-validation-for="Heslo" class="field-error"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="HesloZnovu">Heslo znovu</label>
+                <input asp-for="HesloZnovu" type="password" class="form-input" placeholder="Zopakuj heslo" />
+                <span asp-validation-for="HesloZnovu" class="field-error"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Role">Jsem</label>
+                <div class="role-picker">
+                    <label class="role-option">
+                        <input type="radio" asp-for="Role" value="zak" />
+                        <span class="role-box">
+                            <span class="role-icon">🎒</span>
+                            <span>Žák</span>
+                        </span>
+                    </label>
+                    <label class="role-option">
+                        <input type="radio" asp-for="Role" value="ucitel" />
+                        <span class="role-box">
+                            <span class="role-icon">👨‍🏫</span>
+                            <span>Učitel</span>
+                        </span>
+                    </label>
+                </div>
+                <span asp-validation-for="Role" class="field-error"></span>
+            </div>
+
+            <button type="submit" class="btn-auth">Zaregistrovat se</button>
+        </form>
+
+        <p class="auth-footer">
+            Už máš účet? <a asp-controller="Account" asp-action="Login">Přihlás se</a>
+        </p>
+    </div>
+</section>
