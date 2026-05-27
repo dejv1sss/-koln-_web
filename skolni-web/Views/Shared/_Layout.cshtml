@@ -1,50 +1,118 @@
 ﻿<!DOCTYPE html>
-<html lang="en">
+<html lang="cs">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - skolni_web</title>
-    <script type="importmap"></script>
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <title>@ViewData["Title"] - Moje Škola</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Source+Sans+3:wght@400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/skolni_web.styles.css" asp-append-version="true" />
 </head>
 <body>
-    <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">skolni_web</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
-    </header>
-    <div class="container">
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
+
+    <!-- HORNÍ LIŠTA -->
+    <div class="topbar">
+        <div class="container">
+            <span>Telefon: 499 599 300</span>
+            <span>sekretariat&#64;podvnodniskola.cz</span>
+        </div>
     </div>
 
-    <footer class="border-top footer text-muted">
+    <!-- HLAVIČKA -->
+    <header class="site-header">
+        <div class="container header-inner">
+            <div class="logo">
+                <a href="/">
+                    <div class="logo-erb">🏫</div>
+                    <div class="logo-text">
+                        <span class="logo-main">Moje Škola</span>
+                        <span class="logo-sub">Trutnov</span>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- NAVIGACE -->
+    <nav class="main-nav">
         <div class="container">
-            &copy; 2026 - skolni_web - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            <ul class="nav-list">
+                <li class="nav-item">
+                    <a asp-controller="Home" asp-action="Index">Úvod</a>
+                </li>
+                <li class="nav-item has-dropdown">
+                    <a href="#">Info o škole</a>
+                    <ul class="dropdown">
+                        <li><a href="#">Historie školy</a></li>
+                        <li><a href="#">Projekty</a></li>
+                        <li><a href="#">Fotogalerie</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item has-dropdown">
+                    <a href="#">Žáci a rodiče</a>
+                    <ul class="dropdown">
+                        <li><a href="#">Maturity</a></li>
+                        <li><a href="#">Rozvrhy</a></li>
+                        <li><a href="#">Dokumenty školy</a></li>
+                        <li><a href="#">Poradenství</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item has-dropdown">
+                    <a href="#">Uchazeči</a>
+                    <ul class="dropdown">
+                        <li><a href="#">Přijímací řízení</a></li>
+                        <li><a href="#">Dny otevřených dveří</a></li>
+                        <li><a href="#">Proč studovat u nás</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item">
+                    <a asp-controller="Home" asp-action="Aktuality">Aktuality</a>
+                </li>
+                <li class="nav-item">
+                    <a asp-controller="Home" asp-action="Kontakt">Kontakt</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- OBSAH STRÁNKY -->
+    <main>
+        @RenderBody()
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="site-footer">
+        <div class="container footer-grid">
+            <div class="footer-col">
+                <h4>Moje Škola Trutnov</h4>
+                <p>Malé náměstí 158<br>541 01 Trutnov</p>
+                <p>Tel: 499 599 300</p>
+                <p>sekretariat&#64;mojeskola.cz</p>
+            </div>
+            <div class="footer-col">
+                <h4>Rychlé odkazy</h4>
+                <ul>
+                    <li><a href="#">Bakaláři</a></li>
+                    <li><a href="#">E-learning</a></li>
+                    <li><a href="#">Jídelníček</a></li>
+                    <li><a href="#">Rozvrhy</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Informace</h4>
+                <ul>
+                    <li><a href="#">Přijímací řízení 2026</a></li>
+                    <li><a href="#">Dokumenty školy</a></li>
+                    <li><a href="#">Organizace školního roku</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="container">
+                <p>&copy; @DateTime.Now.Year Moje Škola Trutnov. Všechna práva vyhrazena.</p>
+            </div>
         </div>
     </footer>
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
-    @await RenderSectionAsync("Scripts", required: false)
+
 </body>
 </html>

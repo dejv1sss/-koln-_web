@@ -1,8 +1,123 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Úvod";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+<!-- HERO BANNER -->
+<section class="hero">
+    <div class="hero-overlay">
+        <div class="container hero-content">
+            <h1>Vítejte na Moje Škole</h1>
+            <p>Kvalitní vzdělání pro vaši budoucnost</p>
+            <a href="#aktuality" class="btn-hero">Zjistit více</a>
+        </div>
+    </div>
+</section>
+
+<!-- INFORMAČNÍ BANNERY -->
+<section class="info-boxes">
+    <div class="container">
+        <div class="info-grid">
+            <div class="info-box">
+                <div class="info-icon">📚</div>
+                <h3>Přijímací řízení 2026</h3>
+                <p>Informace pro uchazeče o studium na naší škole pro školní rok 2026/2027.</p>
+                <a href="#" class="btn-link">Více informací →</a>
+            </div>
+            <div class="info-box">
+                <div class="info-icon">📅</div>
+                <h3>Organizace školního roku</h3>
+                <p>Plán prázdnin, pololetních výsledků a dalších důležitých termínů.</p>
+                <a href="#" class="btn-link">Více informací →</a>
+            </div>
+            <div class="info-box">
+                <div class="info-icon">🚪</div>
+                <h3>Den otevřených dveří</h3>
+                <p>Přijďte se podívat na naši školu. Termíny naleznete v sekci pro uchazeče.</p>
+                <a href="#" class="btn-link">Více informací →</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- AKTUALITY -->
+<section class="aktuality-section" id="aktuality">
+    <div class="container">
+        <div class="section-header">
+            <h2>Aktuality</h2>
+            <div class="section-line"></div>
+        </div>
+        <div class="aktuality-grid">
+
+            <article class="aktualita-card">
+                <div class="aktualita-img placeholder-img"></div>
+                <div class="aktualita-body">
+                    <span class="aktualita-date">25. 5. 2026</span>
+                    <h3><a href="#">Vrstevnické učení zaměřené na finanční gramotnost</a></h3>
+                    <p>Studenti třetího ročníku připravili pro mladší spolužáky interaktivní workshop o správě osobních financí.</p>
+                </div>
+            </article>
+
+            <article class="aktualita-card">
+                <div class="aktualita-img placeholder-img"></div>
+                <div class="aktualita-body">
+                    <span class="aktualita-date">20. 5. 2026</span>
+                    <h3><a href="#">Výsledky přijímacího řízení 2026</a></h3>
+                    <p>Výsledky přijímacího řízení ke studiu v denní formě vzdělávání pro školní rok 2026/2027.</p>
+                </div>
+            </article>
+
+            <article class="aktualita-card">
+                <div class="aktualita-img placeholder-img"></div>
+                <div class="aktualita-body">
+                    <span class="aktualita-date">15. 5. 2026</span>
+                    <h3><a href="#">Exkurze do Bratislavy</a></h3>
+                    <p>Studenti čtvrtého ročníku navštívili slovenské hlavní město v rámci předmětu ekonomika a podnikání.</p>
+                </div>
+            </article>
+
+            <article class="aktualita-card">
+                <div class="aktualita-img placeholder-img"></div>
+                <div class="aktualita-body">
+                    <span class="aktualita-date">10. 5. 2026</span>
+                    <h3><a href="#">Veletrh fiktivních firem v Náchodě</a></h3>
+                    <p>Naše škola se zúčastnila regionálního veletrhu fiktivních firem, kde studenti prezentovali své projekty.</p>
+                </div>
+            </article>
+
+            <article class="aktualita-card">
+                <div class="aktualita-img placeholder-img"></div>
+                <div class="aktualita-body">
+                    <span class="aktualita-date">5. 5. 2026</span>
+                    <h3><a href="#">Školní zájezd do Walesu</a></h3>
+                    <p>Studenti jazykového semináře absolvovali týdenní jazykový pobyt ve Walesu.</p>
+                </div>
+            </article>
+
+            <article class="aktualita-card">
+                <div class="aktualita-img placeholder-img"></div>
+                <div class="aktualita-body">
+                    <span class="aktualita-date">28. 4. 2026</span>
+                    <h3><a href="#">Exkurze 3. ročníků do Prahy</a></h3>
+                    <p>Třeťáci navštívili Pražskou burzu a Českou národní banku v rámci výuky ekonomiky.</p>
+                </div>
+            </article>
+
+        </div>
+        <div class="center-btn">
+            <a asp-controller="Home" asp-action="Aktuality" class="btn-primary">Zobrazit všechny aktuality</a>
+        </div>
+    </div>
+</section>
+
+<!-- KONTAKT DOLE -->
+<section class="kontakt-strip">
+    <div class="container kontakt-strip-inner">
+        <div class="kontakt-info">
+            <strong>Moje Škola Trutnov</strong>
+            Malé náměstí 158, 541 01 Trutnov &nbsp;|&nbsp;
+            Tel: 499 599 300 &nbsp;|&nbsp;
+            sekretariat&#64;mojeskola.cz
+        </div>
+        <a asp-controller="Home" asp-action="Kontakt" class="btn-outline">Kontaktujte nás</a>
+    </div>
+</section>
